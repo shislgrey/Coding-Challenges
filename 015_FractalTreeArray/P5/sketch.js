@@ -5,13 +5,14 @@
 
 var tree = [];
 var leaves = [];
-
+var slider;
 var count = 0;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 750);
+  slider = createSlider(-5,5,0,0.1)
   var a = createVector(width / 2, height);
-  var b = createVector(width / 2, height - 100);
+  var b = createVector(width / 2, height - 200);
   var root = new Branch(a, b);
 
   tree[0] = root;
@@ -39,7 +40,7 @@ function mousePressed() {
 
 function draw() {
   background(51);
-
+  speed = slider.value();
   for (var i = 0; i < tree.length; i++) {
     tree[i].show();
     //tree[i].jitter();
@@ -49,6 +50,22 @@ function draw() {
     fill(255, 0, 100, 100);
     noStroke();
     ellipse(leaves[i].x, leaves[i].y, 8, 8);
-    leaves[i].y += random(0, 2);
-  }
+    if (leaves[i].y < height) {
+      leaves[i].x += random(0, speed);
+      leaves[i].y += random(0, 2);
+    } else if (leaves[i].y >= height) {
+      leaves[i].y = height;
+    }
+   }
 }
+
+
+// add breeze effect and leave leaves at the base of the tree
+// take away mouseclick and have tree grow [x] levels in [time increment]
+// when tree reaches max level show leaves
+// .5 sec delay then blow leaves to side and fall and collect
+// adjustable sliders for wind direction/force?
+// add fruit in [random level] of tree generation
+// button to shake tree proportional to level and dislodge fruit
+// leaves change color before falling
+// reset button OR reset after leaf animation
