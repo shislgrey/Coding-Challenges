@@ -5,20 +5,24 @@
 
 var tree = [];
 var leaves = [];
-var slider;
+let slider;
 var count = 0;
+let button1;
+let button2;
 
 function setup() {
   createCanvas(800, 750);
   slider = createSlider(-5,5,0,0.1)
-  var a = createVector(width / 2, height);
-  var b = createVector(width / 2, height - 200);
-  var root = new Branch(a, b);
-
-  tree[0] = root;
+  button1 = createButton('grow');
+  button2 = createButton('reset');
+  button1.position(0, 800);
+  button1.mousePressed(grow);
+  button2.position(0, 850);
+  button2.mousePressed(reset);
+  
 }
 
-function mousePressed() {
+function grow() {
   for (var i = tree.length - 1; i >= 0; i--) {
     if (!tree[i].finished) {
       tree.push(tree[i].branchA());
@@ -38,9 +42,21 @@ function mousePressed() {
   }
 }
 
+function reset() {
+  tree = [];
+  // tree[0] = root;
+  count = 0;
+  // tree[i].finished = false;
+}
+
 function draw() {
   background(51);
   speed = slider.value();
+  var a = createVector(width / 2, height);
+  var b = createVector(width / 2, height - 200);
+  var root = new Branch(a, b);
+
+  tree[0] = root;
   for (var i = 0; i < tree.length; i++) {
     tree[i].show();
     //tree[i].jitter();
