@@ -11,13 +11,13 @@ let button1;
 let button2;
 
 function setup() {
-  createCanvas(800, 750);
+  createCanvas(800, 700);
   slider = createSlider(-5,5,0,0.1)
   button1 = createButton('grow');
   button2 = createButton('reset');
-  button1.position(0, 800);
+  button1.position(150, 705);
   button1.mousePressed(grow);
-  button2.position(0, 850);
+  button2.position(200, 705);
   button2.mousePressed(reset);
   
 }
@@ -44,9 +44,7 @@ function grow() {
 
 function reset() {
   tree = [];
-  // tree[0] = root;
   count = 0;
-  // tree[i].finished = false;
 }
 
 function draw() {
@@ -76,12 +74,12 @@ function draw() {
 }
 
 
-// add breeze effect and leave leaves at the base of the tree
-// take away mouseclick and have tree grow [x] levels in [time increment]
-// when tree reaches max level show leaves
-// .5 sec delay then blow leaves to side and fall and collect
-// adjustable sliders for wind direction/force?
-// add fruit in [random level] of tree generation
-// button to shake tree proportional to level and dislodge fruit
-// leaves change color before falling
-// reset button OR reset after leaf animation
+// v/ add breeze effect and leave leaves at the base of the tree
+//    take away mouseclick and have tree grow [x] levels in [time increment]
+//    when tree reaches max level show leaves
+//    .5 sec delay then blow leaves to side and fall and collect
+// v/ adjustable sliders for wind direction/force?
+//    add fruit in [random level] of tree generation
+//    button to shake tree proportional to level and dislodge fruit
+//    leaves change color before falling
+// v/ reset button OR reset after leaf animation
